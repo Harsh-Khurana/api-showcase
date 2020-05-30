@@ -3,6 +3,7 @@ const postbtn = document.getElementById('post-button');
 const allData = document.getElementById('all-data');
 const formTitle = document.getElementById('form-title');
 const formBody = document.getElementById('form-body');
+const loader = document.getElementById('loading');
 
 
 // Fn that fetches the data on click of fetch btn and also adds the 
@@ -32,9 +33,8 @@ fetchbtn.addEventListener('click',()=>{
 
 // Fn that posts data on click of post btn
 postbtn.addEventListener('click',()=>{
-	console.log("Listening for post click");
+	loader.className = 'loading-animation';
 	if(formTitle.value.length>0 && formBody.value.length>0){
-	console.log("inside if condn");
 		fetch('https://jsonplaceholder.typicode.com/posts', {
 	    method: 'POST',
 	    body: JSON.stringify({
@@ -47,13 +47,18 @@ postbtn.addEventListener('click',()=>{
 	  })
 	  .then(resp => resp.json())
 	  .then(result=>{
+	  		loader.classList.remove('loading-animation');
 	  		alert("Data submitted successfully !!!")
 	  		console.log(result);
+	  		formTitle.value='';
+	  		formBody.value='';
 	  	})
 	  .catch(err=>{
 	  		console.log(err);
+	  		loader.classList.remove('loading-animation');
 	  });
 	}else{
+		loader.classList.remove('loading-animation');
 		alert("Form data cannot be empty :(");
 	}
 })

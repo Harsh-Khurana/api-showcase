@@ -2,13 +2,12 @@
 <html>
 <head>
 	<title>API showcase</title>
+	<link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 	<header>
-		<div>
-			<h2>Let's fetch and post some data</h2>
-		</div>
+		<h1>Let's fetch and post some data</h1>
 		<div id="controls">
 			<button id="fetch-button" class="button">Fetch Data</button>
 			<button id="post-button" class="button">Post Data</button>
@@ -24,6 +23,10 @@
 			</div>
 		</div>
 	</header>
+	<!-- This right here is for the loading animation while the data is being posted to the server -->
+	<div id="loading">
+	</div>
+	<!-- This will contain all the posts that are fetched from the server -->
 	<div id="all-data">
 	</div>
 

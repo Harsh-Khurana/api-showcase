@@ -1,6 +1,215 @@
+/* root selector to declare css native variables that are available within whole file*/
+:root{
+	--color-primary-main:#fc00ff;
+	--color-primary-other:#00dbde;
+	--color-grey:#f7f7f7;
+
+	--shadow-orignal:0 .4rem 1rem rgba(0,0,0,0.15);
+	--shadow-hover:0 .7rem 1.3rem rgba(0,0,0,0.15);
+}
+
+
+/* NORMALIZING CSS */
+*,*::before,*::after{
+	padding: 0;
+	margin:0;
+	box-sizing: border-box;
+	font-family: 'Lobster Two', cursive;
+}
+
+body{
+
+	background-color: var(--color-grey);
+}
+
+/******* MAIN HEADER AND IT'S CHILD ELEMENTS STYLES *******/
+header{
+	background-image: linear-gradient(to bottom right,var(--color-primary-main),var(--color-primary-other));
+	padding: 3rem;
+	z-index:-2;
+	letter-spacing: .2rem;
+	font-size: 2rem;
+	clip-path: polygon(0 0,100% 0,100% 85%,0 100%);
+	padding-bottom: 5rem;
+}
+
+h1{
+	color:white;
+	text-align: center;
+	padding: 2rem 0rem;
+	text-shadow: var(--shadow-orignal);
+	animation: continous 7s infinite;
+}
+#controls{
+	margin-top: 3rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 2rem;
+}
+.form-element:not(:last-child){
+	margin-bottom: 1rem;
+}
+#controls>*{
+	margin:2rem;
+}
+label{
+	font-weight: 600;
+	color: rgba(0,0,0,.7);
+	text-shadow: var(--shadow-orignal);
+}
+input{
+	font-size: 1.5rem;
+	padding:.5rem;
+	border-radius: 5px;
+	text-align: center;
+	border: none;
+	transition: all .5s;
+	background-color: var(--color-grey);
+}
+input:focus{
+	transform: scale(1.05);
+}
+/* BUTTON STYLING */
+button{
+	padding: 1rem;
+	font-weight: 600;
+	font-size: 1.5rem;
+	border: none;
+	border-radius: 5rem;
+	position: relative;
+	box-shadow: var(--shadow-orignal);
+	transition: all .3s;
+}
+button:hover{
+	transform: translateY(-3px);
+	box-shadow: var(--shadow-hover);
+}
+button:active{
+	transform: translateY(0);
+	box-shadow: var(--shadow-orignal);
+}
+#fetch-button{
+	background-color: white;
+	color:var(--color-primary-main);
+}
+#post-button{
+	background-color: white;
+	color: var(--color-primary-other);
+}
+button::after{
+	text-shadow: 0 .2rem .5rem rgba(0,0,0,0.15);
+	padding: 1rem;
+	font-weight: 600;
+	font-size: 1.3rem;
+	border: none;
+	border-radius: 5rem;
+	z-index: -1;
+	background-color: white;
+	position: absolute;
+	top:0;left: 0;
+	content: "";
+	width: 100%;
+	height: 100%;
+	transition: all .6s;
+}
+button:hover::after{
+	z-index: 1;
+	transform: translateY(-3px) scale(1.7);
+	opacity: 0;
+}
+
+@media only screen and (max-width: 924px){
+	#controls{
+		justify-content: center;
+	}
+	#form{
+		margin:0 auto;
+	}
+}
+
+/****** FETCHED CONTENT *******/
+#all-data{
+	display: grid;
+	margin-top: 3rem;
+	grid-template-columns: repeat(auto-fill,minmax(40rem,1fr));
+}
 .card{
 	border:1px solid black;
 	padding: 3rem;
 	margin:2rem;
-	box-shadow: 0 .3rem .8rem rgba(0,0,0,.15);
+	box-shadow: var(--shadow-orignal);
+	background-image: linear-gradient(to bottom right,var(--color-primary-main),var(--color-primary-other));
+	-webkit-background-clip: text;
+	color: transparent;
+	text-align: center;
+	animation:movedown 1s;
+	transition: transform .5s;
+}
+.card:hover{
+	transform: scale(1.05);
+	box-shadow: var(--shadow-hover);
+}
+.card-title{
+	font-weight: 600;
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+.card-body{
+	font-size: 1.5rem;
+}
+
+#loading{
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.loading-animation{
+	border-radius: 50%;
+	padding: 2rem;
+	border:15px solid white;
+	border-top-color: lightblue;
+	animation: spin 1s infinite;
+	transform: translateY(2rem);
+}
+/****** ANIMATIONS DEFINATION *******/
+@keyframes spin{
+	0%{
+		transform: rotate(0);
+	}
+	100%{
+		transform:rotate(360deg);
+	}
+}
+
+@keyframes continous{
+	0%{
+		transform: scale(1);
+	}
+	25%{
+		transform: scale(1.1);
+	}
+	50%{
+		transform: scale(1);
+	}
+	75%{
+		transform: scale(1.1);
+	}
+	100%{
+		transform: scale(1) skew(180deg);
+	}
+}
+
+@keyframes movedown{
+	0%{
+		opacity: 0;
+		transform: translateY(-5rem);
+	}
+	100%{
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
