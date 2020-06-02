@@ -1,8 +1,7 @@
 # api-showcase
 *****NOTE*****
 
-To test the app i recommend using live-server using npx or directly if you have it installed globally, becuase github.io page of this project might give cross-origion allow error,
-and request to the jsonplaceholder api will not be executed.
+To test the app i recommend cloning the repo and then opening the index.html file, becuase github.io page of this project might give cross-origin error, as browsers don't allow requests from localhost to other servers due to same-origin policy.
 
 About the project
 
